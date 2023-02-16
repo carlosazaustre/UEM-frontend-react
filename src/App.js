@@ -20,14 +20,6 @@
 // import { Password } from "./components/U1_b/09_Password";
 // import { Form } from "./components/U1_b/10_Form";
 
-import {
-  useCounter,
-  useAuth,
-  useTasks,
-  useUsers,
-  useShoppingCart,
-} from "./components/practice_U3/practice";
-
 // import {
 //   Saludo,
 //   Lista,
@@ -40,6 +32,22 @@ import {
 //   Table,
 //   ShoppingList,
 // } from "./components/practice_U1/practice";
+
+import {
+  useCounter,
+  useAuth,
+  useTasks,
+  useUsers,
+  useShoppingCart,
+} from "./components/practice_U3/practice";
+
+import { Suspense, lazy } from "react";
+import { ColorPicker } from "./components/U3_b/ColorPicker";
+import { TodoList } from "./components/U3_b/TodoList";
+import { ShoppingCart } from "./components/U3_a/ShoppingCart";
+import { ErrorBoundary, ErrorMessage } from "./components/U3_a/Counter";
+import { ShowServerConfig } from "./components/U3_a/ShowServerConfig";
+const Counter = lazy(() => import("./components/U3_a/Counter"));
 
 function App() {
   // const names = ["sergio", "victoria", "iván", "liviu"];
@@ -56,6 +64,32 @@ function App() {
   const { getCart, addProduct, removeProduct, getTotal } = useShoppingCart();
   return (
     <>
+      <h2>Ejercicios U3</h2>
+      <TodoList />
+      <hr />
+      <ColorPicker />
+      <hr />
+      <ShoppingCart />
+      <hr />
+
+      <ErrorBoundary fallback={<ErrorMessage />}>
+        <ShowServerConfig
+          config={{
+            minConnections: 1,
+            maxConnections: 10,
+            restartAlways: true,
+            environment: "dev",
+            ssl: true,
+          }}
+        />
+      </ErrorBoundary>
+
+      <ErrorBoundary fallback={<ErrorMessage />}>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Counter />
+        </Suspense>
+      </ErrorBoundary>
+
       <h2>Práctica U3</h2>
       <p>Contador: {getCount()}</p>
       <button onClick={increment}>Incrementar</button>
