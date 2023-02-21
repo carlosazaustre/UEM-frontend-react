@@ -33,21 +33,30 @@
 //   ShoppingList,
 // } from "./components/practice_U1/practice";
 
-import {
-  useCounter,
-  useAuth,
-  useTasks,
-  useUsers,
-  useShoppingCart,
-} from "./components/practice_U3/practice";
+// import {
+//   useCounter,
+//   useAuth,
+//   useTasks,
+//   useUsers,
+//   useShoppingCart,
+// } from "./components/practice_U3/practice";
 
-import { Suspense, lazy } from "react";
-import { ColorPicker } from "./components/U3_b/ColorPicker";
-import { TodoList } from "./components/U3_b/TodoList";
-import { ShoppingCart } from "./components/U3_a/ShoppingCart";
-import { ErrorBoundary, ErrorMessage } from "./components/U3_a/Counter";
-import { ShowServerConfig } from "./components/U3_a/ShowServerConfig";
-const Counter = lazy(() => import("./components/U3_a/Counter"));
+// import { Suspense, lazy } from "react";
+// import { ColorPicker } from "./components/U3_b/ColorPicker";
+// import { TodoList } from "./components/U3_b/TodoList";
+// import { ShoppingCart } from "./components/U3_a/ShoppingCart";
+// import { ErrorBoundary, ErrorMessage } from "./components/U3_a/Counter";
+// import { ShowServerConfig } from "./components/U3_a/ShowServerConfig";
+// const Counter = lazy(() => import("./components/U3_a/Counter"));
+
+import { ThemeProvider } from "./components/practice_U4/ThemeContext";
+import { LanguageProvider } from "./components/practice_U4/LanguageContext";
+import { FontSizeProvider } from "./components/practice_U4/FontSizeContext";
+import { AuthProvider } from "./components/practice_U4/AuthContext";
+import { ConfigProvider } from "./components/practice_U4/ConfigContext";
+import { Component } from "./components/practice_U4/Component";
+import { UserComponent } from "./components/practice_U4/UserComponent";
+import { ConfigForm } from "./components/practice_U4/ConfigForm";
 
 function App() {
   // const names = ["sergio", "victoria", "iván", "liviu"];
@@ -57,120 +66,27 @@ function App() {
   //   { name: "Iván", age: 30 },
   //   { name: "Liviu", age: 26 },
   // ];
-  const { getCount, increment, decrement, reset } = useCounter();
-  const { handleChange, handleSubmit, getValues, reset: resetAuth } = useAuth();
-  const { addTask, removeTask, toggleTask, getTasks } = useTasks();
-  const { fetchUsers, addUser, removeUser, getUsers } = useUsers();
-  const { getCart, addProduct, removeProduct, getTotal } = useShoppingCart();
+  // const { getCount, increment, decrement, reset } = useCounter();
+  // const { handleChange, handleSubmit, getValues, reset: resetAuth } = useAuth();
+  // const { addTask, removeTask, toggleTask, getTasks } = useTasks();
+  // const { fetchUsers, addUser, removeUser, getUsers } = useUsers();
+  // const { getCart, addProduct, removeProduct, getTotal } = useShoppingCart();
   return (
     <>
-      <h2>Ejercicios U3</h2>
-      <TodoList />
-      <hr />
-      <ColorPicker />
-      <hr />
-      <ShoppingCart />
-      <hr />
-
-      <ErrorBoundary fallback={<ErrorMessage />}>
-        <ShowServerConfig
-          config={{
-            minConnections: 1,
-            maxConnections: 10,
-            restartAlways: true,
-            environment: "dev",
-            ssl: true,
-          }}
-        />
-      </ErrorBoundary>
-
-      <ErrorBoundary fallback={<ErrorMessage />}>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Counter />
-        </Suspense>
-      </ErrorBoundary>
-
-      <h2>Práctica U3</h2>
-      <p>Contador: {getCount()}</p>
-      <button onClick={increment}>Incrementar</button>
-      <button onClick={decrement}>Decrementar</button>
-      <button onClick={reset}>Resetear</button>
-      <hr />
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={getValues().username}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={getValues().password}
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <button onClick={resetAuth}>Reset</button>
-      <p>Username: {getValues().username}</p>
-      <p>Password: {getValues().password}</p>
-      <hr />
-
-      <form onSubmit={addTask}>
-        <input
-          type="text"
-          name="task"
-          placeholder="Task"
-          value={getValues().task}
-        />
-        <button type="submit">Add task</button>
-      </form>
-      <ul>
-        {getTasks().map((task) => (
-          <li key={task.id}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-            />
-            {task.name} <button onClick={() => removeTask(task.id)}>X</button>
-          </li>
-        ))}
-      </ul>
-      <hr />
-
-      <form onSubmit={addUser}>
-        <input type="text" name="name" placeholder="Name" />
-        <button type="submit">Add user</button>
-      </form>
-      <ul>
-        {getUsers().map((user) => (
-          <li key={user.id}>
-            {user.name} <button onClick={() => removeUser(user.id)}>X</button>
-          </li>
-        ))}
-      </ul>
-      <button onClick={fetchUsers}>Fetch users</button>
-      <hr />
-
-      <form onSubmit={addProduct}>
-        <input type="text" name="name" placeholder="Name" />
-        <input type="number" name="price" placeholder="Price" />
-        <button type="submit">Add product</button>
-      </form>
-      <ul>
-        {getCart().map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.price}€{" "}
-            <button onClick={() => removeProduct(product.id)}>X</button>
-          </li>
-        ))}
-      </ul>
-      <p>Total: {getTotal()}€</p>
-      <hr />
+      <h2>Práctica U4</h2>
+      <AuthProvider>
+        <ConfigProvider>
+          <FontSizeProvider>
+            <LanguageProvider>
+              <ThemeProvider>
+                <ConfigForm />
+                <Component />
+                <UserComponent />
+              </ThemeProvider>
+            </LanguageProvider>
+          </FontSizeProvider>
+        </ConfigProvider>
+      </AuthProvider>
 
       {/* <h2>Práctica</h2>
       <Saludo nombre="Pepe" />
