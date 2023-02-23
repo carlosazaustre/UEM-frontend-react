@@ -49,14 +49,19 @@
 // import { ShowServerConfig } from "./components/U3_a/ShowServerConfig";
 // const Counter = lazy(() => import("./components/U3_a/Counter"));
 
-import { ThemeProvider } from "./components/practice_U4/ThemeContext";
-import { LanguageProvider } from "./components/practice_U4/LanguageContext";
-import { FontSizeProvider } from "./components/practice_U4/FontSizeContext";
-import { AuthProvider } from "./components/practice_U4/AuthContext";
-import { ConfigProvider } from "./components/practice_U4/ConfigContext";
-import { Component } from "./components/practice_U4/Component";
-import { UserComponent } from "./components/practice_U4/UserComponent";
-import { ConfigForm } from "./components/practice_U4/ConfigForm";
+// import { ThemeProvider } from "./components/practice_U4/ThemeContext";
+// import { LanguageProvider } from "./components/practice_U4/LanguageContext";
+// import { FontSizeProvider } from "./components/practice_U4/FontSizeContext";
+// import { AuthProvider } from "./components/practice_U4/AuthContext";
+// import { ConfigProvider } from "./components/practice_U4/ConfigContext";
+// import { Component } from "./components/practice_U4/Component";
+// import { UserComponent } from "./components/practice_U4/UserComponent";
+// import { ConfigForm } from "./components/practice_U4/ConfigForm";
+
+import { LanguageProvider } from "./components/U4_a/LanguageContext";
+import { Header } from "./components/U4_a/Header";
+import { Content } from "./components/U4_a/Content";
+import AppRedux from "./components/U4_b/AppRedux";
 
 function App() {
   // const names = ["sergio", "victoria", "iván", "liviu"];
@@ -73,7 +78,14 @@ function App() {
   // const { getCart, addProduct, removeProduct, getTotal } = useShoppingCart();
   return (
     <>
-      <h2>Práctica U4</h2>
+      <h2>Ejercicios 4 A</h2>
+      <LanguageProvider>
+        <Header />
+        <Content />
+      </LanguageProvider>
+
+      <AppRedux />
+      {/* <h2>Práctica U4</h2>
       <AuthProvider>
         <ConfigProvider>
           <FontSizeProvider>
@@ -86,7 +98,7 @@ function App() {
             </LanguageProvider>
           </FontSizeProvider>
         </ConfigProvider>
-      </AuthProvider>
+      </AuthProvider> */}
 
       {/* <h2>Práctica</h2>
       <Saludo nombre="Pepe" />
