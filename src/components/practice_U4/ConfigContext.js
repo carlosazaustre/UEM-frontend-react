@@ -17,8 +17,8 @@ export function ConfigProvider({ children }) {
     privacy: "public",
   });
 
-  const updateSession = (session) => {
-    setConfig({ ...config, sessionTime: session });
+  const updateSession = (sessionTime) => {
+    setConfig({ ...config, sessionTime });
   };
 
   const updatePrivacy = (privacy) => {

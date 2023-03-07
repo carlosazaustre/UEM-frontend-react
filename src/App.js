@@ -63,6 +63,14 @@ import { Header } from "./components/U4_a/Header";
 import { Content } from "./components/U4_a/Content";
 import AppRedux from "./components/U4_b/AppRedux";
 
+// import { Button } from "./components/practice_U5/Button";
+import { DropdownMenu } from "./components/practice_U5/DropdownMenu";
+import { Card } from "./components/practice_U5/Card";
+import { Form } from "./components/practice_U5/Form";
+import { Table } from "./components/practice_U5/Table";
+import { Page } from "./components/practice_U5/Page";
+import { Dialog } from "./components/practice_U5/Dialog";
+
 function App() {
   // const names = ["sergio", "victoria", "iván", "liviu"];
   // const users = [
@@ -78,12 +86,29 @@ function App() {
   // const { getCart, addProduct, removeProduct, getTotal } = useShoppingCart();
   return (
     <>
+      <h2>Ejercicios 5 - Práctica</h2>
+      {/* <Button>Button</Button>
+      <Button disabled>Button</Button> */}
+      <DropdownMenu />
+      <Card size="small" />
+      <Card size="medium" />
+      <Card size="large" />
+      <Form />
+      <Table />
+      <Page />
+      <Dialog
+        type="alert"
+        message="Dialog de Info"
+        onConfirm={() => console.log("confirm")}
+        onCancel={() => console.log("Cancel")}
+      />
+
+      <hr />
       <h2>Ejercicios 4 A</h2>
       <LanguageProvider>
         <Header />
         <Content />
       </LanguageProvider>
-
       <AppRedux />
       {/* <h2>Práctica U4</h2>
       <AuthProvider>
@@ -99,7 +124,6 @@ function App() {
           </FontSizeProvider>
         </ConfigProvider>
       </AuthProvider> */}
-
       {/* <h2>Práctica</h2>
       <Saludo nombre="Pepe" />
       <Lista elementos={["item1", "item2", "item3"]} />
